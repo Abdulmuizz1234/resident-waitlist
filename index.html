@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Residency Rate — Join the Waitlist</title>
+  <style>
+
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* VARIABLES */
+    :root {
+      --color-primary:      #2563EB;
+      --color-primary-dark: #1D4ED8;
+      --color-text:         #111827;
+      --color-subtle:       #6B7280;
+      --color-border:       #E5E7EB;
+      --color-bg:           #FFFFFF;
+      --color-badge-bg:     #EFF6FF;
+      --color-badge-text:   #2563EB;
+      --font-main: 'Segoe UI', system-ui, sans-serif;
+      --padding-x: 24px;
+    }
+
+    /* BASE */
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* CONTAINER */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 var(--padding-x);
+    }
+
+    /* NAVBAR */
+    nav {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--color-border);
+      background-color: var(--color-bg);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background-color: var(--color-primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .logo-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    /* HERO */
+    #hero {
+      padding: 80px 0;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--color-badge-bg);
+      color: var(--color-badge-text);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: 1px solid var(--color-border);
+    }
+
+    .badge-icon {
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--color-text);
+    }
+
+    .highlight {
+      color: var(--color-primary);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--color-subtle);
+      line-height: 1.7;
+    }
+
+    .waitlist-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .email-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 1rem;
+      color: var(--color-text);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .email-input:focus {
+      border-color: var(--color-primary);
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background-color: var(--color-primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-dark);
+    }
+
+    .privacy-note {
+      font-size: 0.75rem;
+      color: var(--color-subtle);
+    }
+
+    .hero-right {
+      display: none;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .verified-card {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+
+    .verified-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .verified-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .verified-sub {
+      font-size: 0.75rem;
+      color: var(--color-subtle);
+    }
+
+    /* FEATURES */
+    #features {
+      padding: 80px 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    #features h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--color-text);
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--color-subtle);
+      margin-bottom: 48px;
+    }
+
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 24px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .feature-card:hover {
+      background-color: var(--color-badge-bg);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon-box {
+      width: 48px;
+      height: 48px;
+      background-color: var(--color-badge-bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: var(--color-subtle);
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    #cta {
+      padding: 80px 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    #cta h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--color-text);
+      margin-bottom: 12px;
+    }
+
+    .cta-subtitle {
+      font-size: 1rem;
+      color: var(--color-subtle);
+      margin-bottom: 32px;
+    }
+
+    .cta-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--color-subtle);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-primary);
+    }
+
+    .footer-copy {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--color-subtle);
+    }
+
+    /* POLISH */
+    ::selection {
+      background-color: var(--color-primary);
+      color: #ffffff;
+    }
+
+    ::placeholder {
+      color: var(--color-subtle);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* DESKTOP */
+    @media (min-width: 768px) {
+
+      #hero .container {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .hero-left {
+        flex: 1;
+      }
+
+      .hero-right {
+        display: block;
+        flex: 1;
+      }
+
+      .features-list {
+        flex-direction: row;
+        gap: 40px;
+      }
+
+      .feature-card {
+        flex: 1;
+      }
+
+      .cta-form {
+        flex-direction: row;
+      }
+
+      .cta-form .email-input {
+        flex: 1;
+      }
+
+      .cta-form .btn-primary {
+        width: auto;
+        white-space: nowrap;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <div class="logo">
+        <span class="logo-icon">🏥</span>
+        <span class="logo-text">Residency Rate</span>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="container">
+      <div class="hero-left">
+        <div class="badge">
+          <span class="badge-icon">🎯</span>
+          <span>Accepting Early Access</span>
+        </div>
+        <h1>
+          Better Residency
+          <span class="highlight">Choices, Together.</span>
+        </h1>
+        <p class="subtitle">
+          Join our peer-verified platform for honest residency reviews,
+          salary data, and community-driven insights.
+        </p>
+        <div class="waitlist-form">
+          <input type="email" class="email-input" id="hero-email" placeholder="Enter your email address" />
+          <button type="button" class="btn-primary" id="hero-btn">Join Waitlist</button>
+        </div>
+        <p class="privacy-note">🔒 Your privacy is prioritized. No spam, ever.</p>
+      </div>
+      <div class="hero-right">
+        <div class="hero-image-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=800"
+            alt="Hospital corridor"
+            class="hero-image"
+          />
+          <div class="verified-card">
+            <span class="verified-icon">✅</span>
+            <div>
+              <p class="verified-title">Verified Insights</p>
+              <p class="verified-sub">Real data from real residents</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="container">
+      <h2>The platform you deserve.</h2>
+      <p class="section-subtitle">
+        Empowering the next generation of doctors
+        with transparency and data.
+      </p>
+      <div class="features-list">
+        <div class="feature-card">
+          <div class="feature-icon-box">✔️</div>
+          <h3>Verified Reviews</h3>
+          <p>Every review undergoes strict credential verification to ensure authenticity and trust within the community.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-box">⚖️</div>
+          <h3>Side-by-Side Comparison</h3>
+          <p>Compare compensation, call schedules, and culture across programs with our structured data visualizations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-box">🔒</div>
+          <h3>Anonymous Insights</h3>
+          <p>Share and learn without exposure. Our system is built to protect contributor identities at every step.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <div class="container">
+      <h2>Be part of the change.</h2>
+      <p class="cta-subtitle">
+        Join thousands of medical students and residents on the waitlist.
+      </p>
+      <div class="cta-form">
+        <input type="email" class="email-input" id="cta-email" placeholder="Enter your email" />
+        <button type="button" class="btn-primary" id="cta-btn">Get Early Access</button>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <span class="logo-icon">🏥</span>
+        <span class="logo-text">Residency Rate</span>
+      </div>
+      <nav class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2024 Residency Rate. All rights reserved.</p>
+    </div>
+  </footer>
+<script>
+var SUPABASE_URL = 'https://ijgxqkgvlkgzyjahtnfr.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlqZ3hxa2d2bGtnenlqYWh0bmZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDIxMzYsImV4cCI6MjA5Mjc3ODEzNn0.367cSUDddbjv2gRkw1Ak9kXacmGuYWwjyIq5QMr5NZs';
+
+  async function saveEmail(email) {
+    try {
+      var response = await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email: email })
+      });
+      console.log('Response status:', response.status);
+      return response.ok;
+    } catch (err) {
+      console.log('Fetch error:', err);
+      return false;
+    }
+  }
+
+  async function sendConfirmation(email) {
+    try {
+      var response = await fetch(SUPABASE_URL + '/functions/v1/send-confirmation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + SUPABASE_KEY
+        },
+        body: JSON.stringify({ email: email })
+      });
+      var data = await response.json();
+      console.log('Email sent:', data);
+    } catch (err) {
+      console.log('Confirmation error:', err);
+    }
+  }
+
+  function isValidEmail(email) {
+    return email.includes('@') && email.includes('.');
+  }
+
+  function showSuccess(button, input) {
+    input.value = '';
+    button.textContent = 'You are on the list!';
+    button.style.backgroundColor = '#16A34A';
+    button.disabled = true;
+
+    setTimeout(function() {
+      button.textContent = button.dataset.original;
+      button.style.backgroundColor = '';
+      button.disabled = false;
+    }, 3000);
+  }
+
+  function showError(input, message) {
+    input.style.borderColor = '#EF4444';
+    input.placeholder = message;
+
+    setTimeout(function() {
+      input.style.borderColor = '';
+      input.placeholder = 'Enter your email address';
+    }, 3000);
+  }
+
+  function showLoading(button) {
+    button.dataset.original = button.textContent;
+    button.textContent = 'Saving...';
+    button.disabled = true;
+  }
+
+  async function handleSubmit(button, input) {
+    var email = input.value.trim();
+
+    if (!isValidEmail(email)) {
+      showError(input, 'Please enter a valid email');
+      return;
+    }
+
+    showLoading(button);
+
+    var success = await saveEmail(email);
+
+    if (success) {
+      await sendConfirmation(email);
+      showSuccess(button, input);
+    } else {
+      button.textContent = button.dataset.original;
+      button.disabled = false;
+      showError(input, 'Something went wrong. Try again.');
+    }
+  }
+
+  var heroBtn = document.getElementById('hero-btn');
+  var heroEmail = document.getElementById('hero-email');
+
+  heroBtn.addEventListener('click', function() {
+    handleSubmit(heroBtn, heroEmail);
+  });
+
+  var ctaBtn = document.getElementById('cta-btn');
+  var ctaEmail = document.getElementById('cta-email');
+
+  ctaBtn.addEventListener('click', function() {
+    handleSubmit(ctaBtn, ctaEmail);
+  });
+
+  var navbar = document.querySelector('nav');
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 10) {
+      navbar.style.boxShadow = '0 2px 12px rgba(0,0,0,0.08)';
+    } else {
+      navbar.style.boxShadow = 'none';
+    }
+  });
+
+  var cards = document.querySelectorAll('.feature-card');
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  cards.forEach(function(card) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(card);
+  });
+
+</script>
